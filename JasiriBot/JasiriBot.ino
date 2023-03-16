@@ -57,19 +57,25 @@ void loop() {
         break;
 
       case 'E':
+//      Right when face detected
         motorMove(9);
-//        Serial.println("R45");
         Serial.println("K");
         break;
 
       case 'F':
+//      Left when face detected
         motorMove(10);
-//        Serial.println("L45");
+        Serial.println("K");
+        break;
+
+       case 'I':
+//       Right when NO face detected
+        joystickMovement(3);
+        delay(1000);
         Serial.println("K");
         break;
 
        case 'G':
-//        motorMove(7);
         fidget();
         Serial.println("N");
         break;
@@ -95,10 +101,6 @@ void loop() {
          Serial.println("N");
         break;
         
-      case 'b':
-        Serial.println("Jas a pi");
-        break;
-
       default:
         break;
     }
@@ -126,31 +128,31 @@ void motorMove(int dir) {
     case 3: //right 90
       motorLeft.run(-MOTORSPEEDTURN-50);
       motorRight.run(-MOTORSPEEDTURN);
-      delay(380);
+      delay(390);
       break;
 
     case 4: //left 90
       motorLeft.run(MOTORSPEEDTURN);
       motorRight.run(MOTORSPEEDTURN);
-      delay(370);
+      delay(390);
       break;
 
     case 5: //R45
       motorLeft.run(-MOTORSPEEDTURN-50);
       motorRight.run(-MOTORSPEEDTURN);
-      delay(200);
+      delay(250);
       break;
 
     case 6: //L45
       motorLeft.run(MOTORSPEEDTURN);
       motorRight.run(MOTORSPEEDTURN);
-      delay(200);
+      delay(250);
       break;
 
      case 7: //R360
       motorLeft.run(-MOTORSPEEDTURN-50);
       motorRight.run(-MOTORSPEEDTURN);
-      delay(1600);
+      delay(1400);
       break;
 
      case 8: //L360
@@ -272,14 +274,11 @@ void game() {
       onboardled.setColor(0,0,0);
       onboardled.show();
       x = false;
-//      Serial.print("Time taken to react: ");
-//      Serial.print(t); Serial.println("ms");
-
       delay(2000);
       Serial.println(t); //send result to android
     } else {
-      //Button not pressed for 6s
-      if ((millis() - t) > 6000) {
+      //Button not pressed for 7s
+      if ((millis() - t) > 7000) {
         onboardled.setColor(0,0,0);
         onboardled.show(); 
         x = false;
@@ -287,7 +286,6 @@ void game() {
       }
     }
   }
-  //End of game
 }
 
 void freeMotivationMove(int goodOrBad) {
@@ -300,19 +298,31 @@ void freeMotivationMove(int goodOrBad) {
       motorMove(6);
       delay(1000);
       motorMove(1);
+      delay(1500);
+      motorMove(1);
       break;
       
      case 2:  //bad
       delay(200);
       motorMove(1);
-      delay(1500);
+      delay(500);
       motorMove(1);
-      delay(1000);
+      delay(500);
+      motorMove(1);
+      delay(1500);
       motorMove(5);
       delay(1000);
-      motorMove(4);
-      delay(1000);
+      motorMove(6);
+      delay(400);
       motorMove(5);
+      delay(400);
+      motorMove(6);
+      delay(400);
+      motorMove(5);
+      delay(500);
+      motorMove(2);
+      delay(1000);
+      motorMove(6);
       break;
 
      default: break;

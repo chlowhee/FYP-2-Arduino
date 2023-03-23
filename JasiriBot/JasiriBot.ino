@@ -184,12 +184,12 @@ void joystickMovement(int dir) {
     case 1: 
       motorLeft.run(-MOTORSPEED);
       motorRight.run(MOTORSPEED+10);
-      delay(100);
+      delay(90);
       break;
      case 2:
       motorLeft.run(MOTORSPEED);
       motorRight.run(-MOTORSPEED);
-      delay(100);
+      delay(90);
       break;
      case 3: //right 
       motorLeft.run(-MOTORSPEEDTURN-50);
